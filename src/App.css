@@ -1,20 +1,39 @@
 * {
   margin: 0;
+  font-family: inherit;
+}
+
+header {
+  text-align: left;
+  padding: .75rem;
+  box-shadow: 2px 2px 5px rgb(18, 18, 18);
+  color: #e2e8f0;
+}
+
+h2 {
+  margin: 1rem 0 0 0;
+  color: #e2e8f0;
+}
+
+textarea{
+  resize: none;
+  height: 4rem;
+  padding: .2rem;
+  border-radius: .15rem;
+  border: none;
+  background-color: #cbd5e1;
 }
 
 .App {
   text-align: center;
-  background-color: rgb(42, 42, 42);
-  height: 100vh;
+  background-color: #1f2937;
+  min-height: 100vh;
 }
 
 #main {
   display: flex;
   justify-content: center;
-}
-
-h2 {
-  margin: 1rem 0 0 0;
+  padding: 1rem;
 }
 
 .formWrapper {
@@ -22,8 +41,21 @@ h2 {
   flex-direction: column;
   max-width: 40rem;
   border-radius: .5rem;
-  background-color: rgb(75, 75, 75);
+  background-color: #374151;
   padding: 0 1rem 1rem 1rem;
+  box-shadow: 0px 0px 4px rgb(18, 18, 18);
+}
+
+.cvWrapper {
+  width: 21cm;
+  min-height: 29.7cm;
+  padding: 0;
+  margin: 1cm auto;
+  border: none;
+  border-radius: 2px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 form {
@@ -32,8 +64,117 @@ form {
   padding: 0;
 }
 
+form > div > div {
+  margin-bottom: .5rem;
+}
+
+form > div > button {
+  padding: .5rem;
+  background-color: #86efac;
+  color: #1e293b;
+}
+
+form > div > button:hover {
+  background-color: #4ae282;
+}
+
+form input {
+  padding: .2rem;
+  border: none;
+  border-radius: .15rem;
+  background-color: #cbd5e1;
+}
+
+button {
+  padding: .2rem;
+  border: none;
+  border-radius: .15rem;
+  background-color: #fca5a5;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+button:hover {
+  background-color: #ff7e7e;
+  cursor: pointer;
+}
+
 form div {
   display: flex;
   flex-direction: column;
   gap: .25rem;
+}
+
+.cvWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.cvHeader {
+  background-color: rgb(14, 41, 109);
+  color: white;
+  height: 3.5cm;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cvHeader h2 {
+  color: white;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.cvMain {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: 100%;
+}
+
+.cvSidebar {
+  background-color: rgb(221, 221, 221);
+  height: 100;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.cvSidebar img {
+  max-width: 100%;
+}
+
+.cvBody {
+  padding: 1rem;
+}
+
+.discWrapper p {
+  padding: .5rem;
+  font-size: .8rem;
+}
+
+.cvSidebar p {
+  font-size: .8rem;
+}
+
+.expWrapper, .eduWrapper {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 4fr 9fr;
+  padding: .5rem;
+}
+
+.expWrapper p, .eduWrapper p {
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+hr {
+  border-style: none;
+  border-top: 1px solid rgb(221, 221, 221);
 }

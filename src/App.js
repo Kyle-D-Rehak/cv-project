@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
+import CV from './components/CV';
 import './App.css';
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
         firstName: '',
         lastName: '',
         title: '',
+        image: '',
         address: '',
         phone: '',
         email: '',
@@ -42,16 +44,26 @@ class App extends React.Component {
 
   };
 
-  updateInfo(target, object, index = undefined) {
-    this.setState((state) => {
-      const newState = JSON.parse(JSON.stringify(state));
-      if(index === undefined) {
-        newState[object][target.name] = target.value;
-      } else {
-        newState[object][index][target.name] = target.value;
+  updateInfo(target, object, index = undefined, image = false) {
+    if(image) {
+      if (target.files && target.files[0]) {
+        this.setState((state) => {
+          const newState = JSON.parse(JSON.stringify(state));
+            newState.info.image = URL.createObjectURL(target.files[0]);
+          return newState;
+        });
       }
-      return newState;
-    });  
+    } else {
+      this.setState((state) => {
+        const newState = JSON.parse(JSON.stringify(state));
+        if(index === undefined) {
+          newState[object][target.name] = target.value;
+        } else {
+          newState[object][index][target.name] = target.value;
+        }
+        return newState;
+      }); 
+    }
   }
 
   createNewExp() {
@@ -110,6 +122,7 @@ class App extends React.Component {
             deleteEdu={this.deleteEdu} 
             globalState={this.state}
           />
+          <CV globalState={this.state} />
         </div>
       </div>
     );

@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 import CV from './components/CV';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateInfo = this.updateInfo.bind(this);
-    this.createNewExp = this.createNewExp.bind(this);
-    this.deleteExp = this.deleteExp.bind(this);
-    this.createNewEdu = this.createNewEdu.bind(this);
-    this.deleteEdu = this.deleteEdu.bind(this);
-    this.state = {
+const App = () => {
+    const [appState, setAppState] = useState({
       info: {
         firstName: '',
         lastName: '',
@@ -40,22 +33,20 @@ class App extends React.Component {
           to: ''
         }
       ]
-    };
+    });
 
-  };
-
-  updateInfo(target, object, index = undefined, image = false) {
+  const updateInfo = (target, object, index = undefined, image = false) => {
     if(image) {
       if (target.files && target.files[0]) {
-        this.setState((state) => {
+        setAppState((state) => {
           const newState = JSON.parse(JSON.stringify(state));
             newState.info.image = URL.createObjectURL(target.files[0]);
           return newState;
         });
       }
     } else {
-      this.setState((state) => {
-        const newState = JSON.parse(JSON.stringify(state));
+      setAppState((appState) => {
+        const newState = JSON.parse(JSON.stringify(appState));
         if(index === undefined) {
           newState[object][target.name] = target.value;
         } else {
@@ -66,8 +57,8 @@ class App extends React.Component {
     }
   }
 
-  createNewExp() {
-    this.setState((state) => {
+  const createNewExp = () => {
+    setAppState((state) => {
       const newState = JSON.parse(JSON.stringify(state));
       newState.exp.push({
         position: '',
@@ -80,16 +71,16 @@ class App extends React.Component {
     });
   }
 
-  deleteExp(index) {
-    this.setState((state) => {
+  const deleteExp = (index) => {
+    setAppState((state) => {
       const newState = JSON.parse(JSON.stringify(state));
       newState.exp.splice(index, 1);
       return newState;
     });
   }
 
-  createNewEdu() {
-    this.setState((state) => {
+  const createNewEdu = () => {
+    setAppState((state) => {
       const newState = JSON.parse(JSON.stringify(state));
       newState.edu.push({
         university: '',
@@ -101,32 +92,30 @@ class App extends React.Component {
     });
   }
 
-  deleteEdu(index) {
-    this.setState((state) => {
+  const deleteEdu = (index) => {
+    setAppState((state) => {
       const newState = JSON.parse(JSON.stringify(state));
       newState.edu.splice(index, 1);
       return newState;
     });
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <div id='main'>
-          <Form 
-            updateInfo={this.updateInfo} 
-            createNewExp={this.createNewExp} 
-            deleteExp={this.deleteExp} 
-            createNewEdu={this.createNewEdu} 
-            deleteEdu={this.deleteEdu} 
-            globalState={this.state}
-          />
-          <CV globalState={this.state} />
-        </div>
+  return (
+    <div className="App">
+      <Header />
+      <div id='main'>
+        <Form 
+          updateInfo={updateInfo} 
+          createNewExp={createNewExp} 
+          deleteExp={deleteExp} 
+          createNewEdu={createNewEdu} 
+          deleteEdu={deleteEdu} 
+          globalState={appState}
+        />
+        <CV globalState={appState} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
